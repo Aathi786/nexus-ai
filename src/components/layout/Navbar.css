@@ -235,3 +235,80 @@ padding:0 18px;
 }
 
 }
+/* Hide mobile links on desktop */
+
+.mobile-resume,
+.mobile-download{
+
+display:none;
+
+}
+
+/* ========================= */
+/* Tablet & Mobile */
+/* ========================= */
+
+@media (max-width:992px){
+
+.mobile-resume,
+.mobile-download{
+
+display:block;
+
+width:100%;
+
+text-align:center;
+
+}
+
+.mobile-resume a{
+
+display:block;
+
+margin:10px auto;
+
+padding:12px 20px;
+
+width:180px;
+
+background:#00E5FF;
+
+color:#081018;
+
+border-radius:12px;
+
+font-weight:700;
+
+text-decoration:none;
+
+}
+
+.mobile-download a{
+
+display:block;
+
+margin:10px auto;
+
+padding:10px 20px;
+
+width:180px;
+
+border:1px solid #00E5FF;
+
+color:#00E5FF;
+
+border-radius:10px;
+
+text-decoration:none;
+
+}
+
+.mobile-download a:hover{
+
+background:#00E5FF;
+
+color:#081018;
+
+}
+
+}

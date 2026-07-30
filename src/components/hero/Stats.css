@@ -6,6 +6,10 @@ gap:25px;
 
 margin-top:60px;
 
+flex-wrap:wrap;
+
+justify-content:center;
+
 }
 
 .box{
@@ -49,5 +53,78 @@ font-size:38px;
 margin-top:10px;
 
 color:#94A3B8;
+
+}
+
+/* ========================= */
+/* Mobile */
+/* ========================= */
+
+@media (max-width:768px){
+
+.stats{
+
+justify-content:center;
+
+gap:15px;
+
+}
+
+.box{
+
+min-width:120px;
+
+padding:18px;
+
+}
+
+.box h2{
+
+font-size:30px;
+
+}
+
+.box p{
+
+font-size:15px;
+
+}
+
+}
+/* ========================= */
+/* Mobile Only */
+/* ========================= */
+
+@media (max-width:768px){
+
+.stats{
+
+justify-content:center;
+
+flex-wrap:wrap;
+
+gap:15px;
+
+}
+
+.box{
+
+min-width:120px;
+
+padding:18px;
+
+}
+
+.box h2{
+
+font-size:30px;
+
+}
+
+.box p{
+
+font-size:15px;
+
+}
 
 }

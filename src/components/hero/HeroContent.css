@@ -32,4 +32,52 @@ color:#00E5FF;
 
 transform:translateY(-5px) scale(1.15);
 
+}/* ========================= */
+/* Mobile Only */
+/* ========================= */
+
+@media (max-width:768px){
+
+.hero-content{
+
+width:100%;
+
+text-align:center;
+
+}
+
+.hero-content h1{
+
+font-size:48px;
+
+}
+
+.hero-content h2{
+
+font-size:30px;
+
+}
+
+.about{
+
+padding:0 10px;
+
+font-size:18px;
+
+line-height:1.6;
+
+}
+
+.social{
+
+flex-direction:column;
+
+align-items:center;
+
+gap:20px;
+
+margin-top:30px;
+
+}
+
 }
