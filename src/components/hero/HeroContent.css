@@ -1,0 +1,35 @@
+.social{
+
+display:flex;
+
+align-items:center;
+
+gap:25px;
+
+margin-top:35px;
+
+}
+
+.social a{
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+font-size:28px;
+
+color:white;
+
+transition:.35s;
+
+}
+
+.social a:hover{
+
+color:#00E5FF;
+
+transform:translateY(-5px) scale(1.15);
+
+}

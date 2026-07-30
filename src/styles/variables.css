@@ -1,0 +1,24 @@
+:root{
+
+--background:#050816;
+
+--background-secondary:#111827;
+
+--primary:#00E5FF;
+
+--secondary:#7C3AED;
+
+--text:#FFFFFF;
+
+--text-secondary:#94A3B8;
+
+--glass:rgba(255,255,255,.05);
+
+--border:rgba(255,255,255,.12);
+
+--shadow:0 0 40px rgba(0,229,255,.2);
+
+--radius:16px;
+
+--transition:.35s;
+}

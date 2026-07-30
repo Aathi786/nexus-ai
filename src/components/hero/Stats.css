@@ -1,0 +1,53 @@
+.stats{
+
+display:flex;
+
+gap:25px;
+
+margin-top:60px;
+
+}
+
+.box{
+
+padding:25px;
+
+min-width:150px;
+
+text-align:center;
+
+border-radius:20px;
+
+background:rgba(255,255,255,.05);
+
+backdrop-filter:blur(20px);
+
+border:1px solid rgba(255,255,255,.08);
+
+transition:.35s;
+
+}
+
+.box:hover{
+
+transform:translateY(-10px);
+
+box-shadow:0 0 30px rgba(0,229,255,.4);
+
+}
+
+.box h2{
+
+color:#00E5FF;
+
+font-size:38px;
+
+}
+
+.box p{
+
+margin-top:10px;
+
+color:#94A3B8;
+
+}

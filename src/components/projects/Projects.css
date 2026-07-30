@@ -1,0 +1,178 @@
+.projects{
+padding:120px 8%;
+}
+
+.projects h2{
+text-align:center;
+font-size:42px;
+color:#00E5FF;
+margin-bottom:60px;
+letter-spacing:4px;
+}
+
+.project-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(360px,1fr));
+gap:35px;
+}
+
+.project-card{
+background:rgba(255,255,255,.05);
+backdrop-filter:blur(20px);
+border:1px solid rgba(255,255,255,.08);
+padding:30px;
+border-radius:20px;
+transition:.4s;
+}
+
+.project-card:hover{
+transform:translateY(-12px);
+box-shadow:0 0 35px rgba(0,229,255,.25);
+}
+
+.status{
+color:#00ff88;
+font-size:14px;
+font-weight:bold;
+}
+
+.project-card h3{
+margin:18px 0;
+color:#fff;
+}
+
+.tech{
+color:#00E5FF;
+margin-bottom:18px;
+}
+
+.buttons{
+display:flex;
+gap:15px;
+margin-top:25px;
+}
+
+/* GitHub Link Button */
+
+.project-btn{
+
+padding:12px 22px;
+
+background:#00E5FF;
+
+border-radius:10px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+gap:10px;
+
+text-decoration:none;
+
+color:#081018;
+
+font-weight:600;
+
+transition:.3s;
+
+}
+
+.project-btn:hover{
+
+transform:translateY(-4px);
+
+box-shadow:0 0 20px #00E5FF;
+
+}
+
+/* View Button */
+
+.buttons button{
+
+padding:12px 22px;
+
+border:none;
+
+border-radius:10px;
+
+cursor:pointer;
+
+background:#00E5FF;
+
+display:flex;
+
+align-items:center;
+
+gap:10px;
+
+font-weight:600;
+
+transition:.3s;
+
+}
+
+.buttons button:hover{
+
+transform:translateY(-4px);
+
+box-shadow:0 0 20px #00E5FF;
+
+}
+
+/* ========================= */
+/* Tablet */
+/* ========================= */
+
+@media (max-width:992px){
+
+.projects{
+
+padding:100px 40px;
+
+}
+
+.project-grid{
+
+grid-template-columns:1fr;
+
+}
+
+}
+
+/* ========================= */
+/* Mobile */
+/* ========================= */
+
+@media (max-width:768px){
+
+.projects{
+
+padding:80px 20px;
+
+}
+
+.projects h2{
+
+font-size:32px;
+
+}
+
+.buttons{
+
+flex-direction:column;
+
+}
+
+.project-btn,
+.buttons button{
+
+width:100%;
+
+justify-content:center;
+
+}
+
+}
