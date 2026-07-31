@@ -7,9 +7,9 @@ function Loader() {
 
       <p className="status">Initializing System...</p>
 
-      <div className="progress">
-        <div className="progress-bar"></div>
-      </div>
+    <div className="loader-progress">
+  <div className="loader-progress-bar"></div>
+</div>
     </div>
   );
 }
