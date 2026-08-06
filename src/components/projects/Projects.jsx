@@ -23,7 +23,7 @@ function Projects() {
       title: "Course Registration System",
       tech: "Spring Boot • Spring Security • Oracle",
       description: "Students can register and manage courses securely.",
-      github: "#"
+      github: "https://github.com/Aathi786/Course_Registration_System"
     }
 
   ];
