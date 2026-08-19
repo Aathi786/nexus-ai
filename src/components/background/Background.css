@@ -1,35 +1,37 @@
-.bg-grid {
+.bg-grid-overlay {
   position: fixed;
   inset: 0;
   background-image:
-    linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
-  background-size: 50px 50px;
-  z-index: -2;
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(circle at center, black 40%, transparent 90%);
+  -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 90%);
+  z-index: -3;
+  pointer-events: none;
 }
 
-.bg-glow {
+.bg-ambient-glow {
   position: fixed;
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(0,229,255,.25), transparent 70%);
-  top: -150px;
-  right: -150px;
-  filter: blur(60px);
-  animation: floatGlow 8s ease-in-out infinite;
-  z-index: -1;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(0, 229, 255, 0.12), rgba(124, 58, 237, 0.08) 50%, transparent 70%);
+  top: -200px;
+  right: -200px;
+  filter: blur(80px);
+  z-index: -3;
+  pointer-events: none;
+  animation: ambientFloat 14s ease-in-out infinite alternate;
 }
 
-@keyframes floatGlow {
+@keyframes ambientFloat {
   0% {
-    transform: translateY(0px);
+    transform: translate(0, 0) scale(1);
   }
-
   50% {
-    transform: translateY(40px);
+    transform: translate(-60px, 80px) scale(1.1);
   }
-
   100% {
-    transform: translateY(0px);
+    transform: translate(40px, -40px) scale(0.95);
   }
 }

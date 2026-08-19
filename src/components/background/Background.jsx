@@ -1,10 +1,12 @@
+import CyberBackground3D from "../3d/CyberBackground3D";
 import "./Background.css";
 
 function Background() {
   return (
     <>
-      <div className="bg-grid"></div>
-      <div className="bg-glow"></div>
+      <CyberBackground3D />
+      <div className="bg-grid-overlay" aria-hidden="true" />
+      <div className="bg-ambient-glow" aria-hidden="true" />
     </>
   );
 }

@@ -1,6 +1,8 @@
-import emailjs from "@emailjs/browser";
-import "./Terminal.css";
 import { useState, useEffect } from "react";
+import emailjs from "@emailjs/browser";
+import confetti from "canvas-confetti";
+import { FaTerminal, FaPaperPlane, FaLock, FaCheckCircle, FaExclamationCircle } from "react-icons/fa";
+import "./Terminal.css";
 
 function Terminal() {
   const [email, setEmail] = useState("");
@@ -9,30 +11,28 @@ function Terminal() {
   const [booting, setBooting] = useState(true);
   const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
-  const [status, setStatus] = useState("");
+  const [statusText, setStatusText] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
-  // AI Greeting Animation
   const [line1, setLine1] = useState(false);
   const [line2, setLine2] = useState(false);
   const [line3, setLine3] = useState(false);
   const [line4, setLine4] = useState(false);
 
-  // Boot Screen
   useEffect(() => {
     const timer = setTimeout(() => {
       setBooting(false);
-    }, 2500);
+    }, 800);
 
     return () => clearTimeout(timer);
   }, []);
 
-  // AI Greeting
   useEffect(() => {
     if (!booting) {
-      const t1 = setTimeout(() => setLine1(true), 300);
-      const t2 = setTimeout(() => setLine2(true), 900);
-      const t3 = setTimeout(() => setLine3(true), 1600);
-      const t4 = setTimeout(() => setLine4(true), 2300);
+      const t1 = setTimeout(() => setLine1(true), 150);
+      const t2 = setTimeout(() => setLine2(true), 350);
+      const t3 = setTimeout(() => setLine3(true), 600);
+      const t4 = setTimeout(() => setLine4(true), 850);
 
       return () => {
         clearTimeout(t1);
@@ -45,23 +45,25 @@ function Terminal() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setErrorMessage("");
 
     if (!email || !message) {
-      alert("Please enter your email address and message.");
+      setErrorMessage("Please provide both your email address and message.");
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setErrorMessage("Please enter a valid email address.");
       return;
     }
 
     setLoading(true);
+    setStatusText("Connecting to messaging service...");
 
-    setStatus("Establishing secure connection...");
-
-    setTimeout(() => {
-      setStatus("Encrypting message...");
-    }, 900);
-
-    setTimeout(() => {
-      setStatus("Transmitting to developer...");
-    }, 1800);
+    const s1 = setTimeout(() => {
+      setStatusText("Sending message to Aathithya...");
+    }, 600);
 
     const templateParams = {
       name: "Portfolio Recruiter",
@@ -77,168 +79,191 @@ function Terminal() {
         "xAHJCqiUpymKTDcJs"
       )
       .then(() => {
+        clearTimeout(s1);
         setLoading(false);
         setSent(true);
-
         setEmail("");
         setMessage("");
 
-        // Reset Terminal after 6 seconds
+        try {
+          confetti({
+            particleCount: 50,
+            spread: 70,
+            origin: { y: 0.6 },
+            colors: ["#00E5FF", "#7C3AED", "#10B981"],
+          });
+        } catch {
+          // Fallback
+        }
+
         setTimeout(() => {
           setSent(false);
-          setStatus("");
-
+          setStatusText("");
           setLine1(false);
           setLine2(false);
           setLine3(false);
           setLine4(false);
 
-          setTimeout(() => setLine1(true), 300);
-          setTimeout(() => setLine2(true), 900);
-          setTimeout(() => setLine3(true), 1600);
-          setTimeout(() => setLine4(true), 2300);
-        }, 6000);
+          setTimeout(() => setLine1(true), 150);
+          setTimeout(() => setLine2(true), 350);
+          setTimeout(() => setLine3(true), 600);
+          setTimeout(() => setLine4(true), 850);
+        }, 7000);
       })
       .catch((err) => {
-        console.error(err);
-
+        clearTimeout(s1);
+        console.error("EmailJS transmission error:", err);
         setLoading(false);
-
-        alert("Failed to send message. Please try again.");
+        setErrorMessage("Message could not be sent. Please email directly at aathi4488@gmail.com.");
       });
   };
 
   return (
-    <section className="terminal" id="contact">
-      <div className="terminal-window">
+    <section className="terminal section-container" id="terminal">
+      <div className="section-header">
+        <span className="section-tag">Quick Dispatch</span>
+        <h2 className="section-title">SEND A <span>DIRECT MESSAGE</span></h2>
+        <p className="section-subtitle">
+          Have an open role, project inquiry, or interview invite? Send a message directly to my inbox.
+        </p>
+      </div>
 
-        <div className="terminal-header">
-          <span className="red"></span>
-          <span className="yellow"></span>
-          <span className="green"></span>
+      <div className="terminal-window glass-panel">
+        {/* Terminal Header Bar */}
+        <div className="terminal-header-bar">
+          <div className="terminal-dots">
+            <span className="dot red"></span>
+            <span className="dot yellow"></span>
+            <span className="dot green"></span>
+          </div>
 
-          <h3>NEXUS AI COMMUNICATION TERMINAL</h3>
+          <div className="terminal-title-text">
+            <FaTerminal className="term-icon" />
+            <span>DIRECT INBOX DISPATCH</span>
+          </div>
+
+          <div className="terminal-status-ping">
+            <span className="ping-dot"></span> DIRECT CHANNEL
+          </div>
         </div>
 
-        <div className="terminal-body">
-
+        {/* Terminal Body */}
+        <div className="terminal-body-inner">
           {booting ? (
-
-            <div className="boot-screen">
-
-              <p>{">"} Initializing NEXUS AI...</p>
-
-              <div className="progress-bar">
-                <div className="progress"></div>
+            <div className="boot-container">
+              <p className="boot-line">{">"} Connecting to developer message service...</p>
+              <div className="boot-progress-track">
+                <div className="boot-progress-fill"></div>
               </div>
-
-              <p>{">"} Loading secure communication protocol...</p>
-
-              <p>{">"} Connecting to developer network...</p>
-
-              <p className="ready">✓ Terminal Ready</p>
-
+              <p className="boot-ready">✓ Channel Ready</p>
             </div>
-
           ) : !sent ? (
-
-            <form onSubmit={handleSubmit} className="terminal-form">
-
+            <form onSubmit={handleSubmit} className="terminal-form-box">
               {line1 && (
-                <p className="terminal-text fade-line">
-                  {">"} Welcome to <span>Aathithya's Portfolio</span>.
+                <p className="terminal-prompt fade-in-line">
+                  <span className="prompt-sym">&gt;</span> Direct communication with <strong className="highlight-cyan">Aathithya R</strong>.
                 </p>
               )}
 
               {line2 && (
-                <p className="terminal-text fade-line">
-                  {">"} I'm <span>NEXUS AI</span>, your communication assistant.
+                <p className="terminal-prompt fade-in-line">
+                  <span className="prompt-sym">&gt;</span> Full-Stack Java Developer • Ready for software engineering opportunities.
                 </p>
               )}
 
               {line3 && (
-                <p className="terminal-text fade-line">
-                  {">"} Looking to discuss a job opportunity, interview or collaboration?
+                <p className="terminal-prompt fade-in-line">
+                  <span className="prompt-sym">&gt;</span> Fill out the form below to send an instant message:
                 </p>
               )}
 
               {line4 && (
-                <>
-                  <p className="terminal-sub fade-line">
-                    Enter your email address and message below.
-                  </p>
+                <div className="terminal-interactive-fields fade-in-line">
+                  <div className="input-field-group">
+                    <label htmlFor="terminal-email">YOUR EMAIL ADDRESS:</label>
+                    <input
+                      id="terminal-email"
+                      type="email"
+                      required
+                      placeholder="name@company.com"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      disabled={loading}
+                      autoComplete="email"
+                    />
+                  </div>
 
-                  <p className="terminal-sub fade-line">
-                    Your message will be securely delivered to the developer.
-                  </p>
+                  <div className="input-field-group">
+                    <label htmlFor="terminal-message">YOUR MESSAGE:</label>
+                    <textarea
+                      id="terminal-message"
+                      required
+                      rows={5}
+                      placeholder="Hi Aathithya, we would like to discuss an opportunity regarding..."
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
+                      disabled={loading}
+                    ></textarea>
+                  </div>
 
-                  <input
-                    type="email"
-                    placeholder="your@email.com"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-
-                  <textarea
-                    rows="6"
-                    placeholder="Type your message here..."
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
-                  ></textarea>
-
-                  <button type="submit" disabled={loading}>
-                    {loading ? "TRANSMITTING..." : "TRANSMIT MESSAGE"}
-                  </button>
-
-                  {loading && (
-                    <div className="sending-status">
-
-                      <p>{status}</p>
-
-                      <div className="sending-bar">
-                        <div className="sending-progress"></div>
-                      </div>
-
+                  {errorMessage && (
+                    <div className="terminal-error-banner">
+                      <FaExclamationCircle />
+                      <span>{errorMessage}</span>
                     </div>
                   )}
 
-                  <p className="privacy">
-                    🔒 Your email is used only to reply to your message and will never be shared with third parties.
-                  </p>
-                </>
+                  <button
+                    type="submit"
+                    className="terminal-submit-btn"
+                    disabled={loading}
+                  >
+                    {loading ? (
+                      <>
+                        <span className="loading-spinner"></span>
+                        <span>SENDING MESSAGE...</span>
+                      </>
+                    ) : (
+                      <>
+                        <FaPaperPlane />
+                        <span>SEND MESSAGE TO AATHITHYA</span>
+                      </>
+                    )}
+                  </button>
+
+                  {loading && (
+                    <div className="transmission-progress-box">
+                      <p className="trans-status">{statusText}</p>
+                      <div className="trans-bar-track">
+                        <div className="trans-bar-fill"></div>
+                      </div>
+                    </div>
+                  )}
+
+                  <div className="terminal-privacy-note">
+                    <FaLock />
+                    <span>Your email is used solely to reply to your inquiry.</span>
+                  </div>
+                </div>
               )}
-
             </form>
-
           ) : (
-
-            <div className="success-box">
-
-              <h2>✓ Transmission Complete</h2>
-
-              <p>Your message has been securely delivered.</p>
-
-              <p>
-                Thank you for contacting <span>Aathithya</span>.
+            <div className="transmission-success-box">
+              <div className="success-icon-wrap">
+                <FaCheckCircle />
+              </div>
+              <h3 className="success-heading">✓ Message Sent Successfully</h3>
+              <p className="success-sub">
+                Thank you! Your message has been delivered to <strong>Aathithya</strong>.
               </p>
-
-              <p>
-                You can expect a response within
-                <strong> 24 Hours.</strong>
-              </p>
-
-              <br />
-
-              <p className="ready">
-                Returning terminal to standby mode...
-              </p>
-
+              <div className="success-eta-badge">
+                <span>ESTIMATED RESPONSE:</span>
+                <strong>Within 24 Hours</strong>
+              </div>
+              <p className="success-reset-tip">Resetting form in a few seconds...</p>
             </div>
-
           )}
-
         </div>
-
       </div>
     </section>
   );

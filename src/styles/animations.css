@@ -1,0 +1,15 @@
+/* Keyframe Utilities */
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 1; filter: drop-shadow(0 0 10px rgba(0, 229, 255, 0.5)); }
+  50% { opacity: 0.6; filter: drop-shadow(0 0 20px rgba(0, 229, 255, 0.8)); }
+}
+
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

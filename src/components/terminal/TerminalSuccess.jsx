@@ -1,14 +1,14 @@
+import { FaCheckCircle } from "react-icons/fa";
+
 function TerminalSuccess() {
   return (
-    <div className="terminal-success">
-      <h2>✓ Transmission Successful</h2>
-
-      <p>
-        Your message has been delivered successfully.
-      </p>
-
-      <p>
-        Aathithya will contact you within 24 hours.
+    <div className="transmission-success-box">
+      <div className="success-icon-wrap">
+        <FaCheckCircle />
+      </div>
+      <h3 className="success-heading">✓ Transmission Complete</h3>
+      <p className="success-sub">
+        Your message has been securely delivered to <strong>Aathithya</strong>.
       </p>
     </div>
   );

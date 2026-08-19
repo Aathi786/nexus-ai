@@ -1,18 +1,7 @@
-import "./Terminal.css";
-import TerminalHeader from "./TerminalHeader";
+import Terminal from "./Terminal";
 
 function CommunicationTerminal() {
-  return (
-    <section className="terminal-section" id="contact">
-
-      <div className="terminal-window">
-
-        <TerminalHeader />
-
-      </div>
-
-    </section>
-  );
+  return <Terminal />;
 }
 
 export default CommunicationTerminal;

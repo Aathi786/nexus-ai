@@ -1,24 +1,53 @@
-:root{
+:root {
+  /* Core Backgrounds */
+  --bg-primary: #050816;
+  --bg-secondary: #0a0f24;
+  --bg-tertiary: #101835;
+  --bg-card: rgba(13, 22, 48, 0.65);
+  --bg-card-hover: rgba(19, 32, 70, 0.85);
+  --bg-glass: rgba(255, 255, 255, 0.04);
+  --bg-glass-heavy: rgba(8, 14, 34, 0.85);
 
---background:#050816;
+  /* Brand Accents */
+  --primary: #00E5FF;
+  --primary-rgb: 0, 229, 255;
+  --primary-dark: #00B4D8;
+  --secondary: #7C3AED;
+  --secondary-rgb: 124, 58, 237;
+  --secondary-dark: #6D28D9;
+  
+  /* Status Colors */
+  --status-online: #10B981;
+  --status-warning: #F59E0B;
+  --status-danger: #EF4444;
 
---background-secondary:#111827;
+  /* Typography Colors */
+  --text-primary: #F8FAFC;
+  --text-secondary: #94A3B8;
+  --text-muted: #64748B;
+  --text-accent: #00E5FF;
 
---primary:#00E5FF;
+  /* Borders & Highlights */
+  --border-light: rgba(255, 255, 255, 0.08);
+  --border-glass: rgba(0, 229, 255, 0.2);
+  --border-glow: rgba(0, 229, 255, 0.5);
+  --border-purple: rgba(124, 58, 237, 0.3);
 
---secondary:#7C3AED;
+  /* Shadows & Glows */
+  --glow-primary: 0 0 30px rgba(0, 229, 255, 0.3);
+  --glow-primary-lg: 0 0 60px rgba(0, 229, 255, 0.4);
+  --glow-secondary: 0 0 30px rgba(124, 58, 237, 0.35);
+  --card-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7);
 
---text:#FFFFFF;
+  /* Layout & Geometry */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-full: 9999px;
 
---text-secondary:#94A3B8;
-
---glass:rgba(255,255,255,.05);
-
---border:rgba(255,255,255,.12);
-
---shadow:0 0 40px rgba(0,229,255,.2);
-
---radius:16px;
-
---transition:.35s;
+  /* Transitions */
+  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }

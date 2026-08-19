@@ -1,13 +1,18 @@
+import { FaTerminal } from "react-icons/fa";
+
 function TerminalHeader() {
   return (
-    <div className="terminal-header">
+    <div className="terminal-header-bar">
       <div className="terminal-dots">
-        <span className="red"></span>
-        <span className="yellow"></span>
-        <span className="green"></span>
+        <span className="dot red"></span>
+        <span className="dot yellow"></span>
+        <span className="dot green"></span>
       </div>
 
-      <h3>NEXUS AI COMMUNICATION TERMINAL</h3>
+      <div className="terminal-title-text">
+        <FaTerminal className="term-icon" />
+        <span>NEXUS-AI // COMM-TERMINAL</span>
+      </div>
     </div>
   );
 }

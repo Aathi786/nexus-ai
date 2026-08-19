@@ -1,15 +1,14 @@
-import "./Hero.css";
-import HeroImage from "./HeroImage";
 import HeroContent from "./HeroContent";
+import HeroImage from "./HeroImage";
+import "./Hero.css";
 
-function Hero() {
+function Hero({ onToggleGravity }) {
   return (
-    <section className="hero" id="home">
-
-      <HeroContent />
-
-      <HeroImage />
-
+    <section className="hero section-container" id="home">
+      <div className="hero-grid">
+        <HeroContent onToggleGravity={onToggleGravity} />
+        <HeroImage />
+      </div>
     </section>
   );
 }

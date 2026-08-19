@@ -10,76 +10,71 @@ import {
   FaLeaf,
   FaDatabase,
   FaFileCode,
-  FaGlobe
+  FaGlobe,
 } from "react-icons/fa";
 
-function SkillCard({ skill }) {
-
-  let icon;
-
-  switch (skill) {
-
+function getSkillIcon(skillName) {
+  switch (skillName) {
     case "Java":
-      icon = <FaJava />;
-      break;
-
+      return <FaJava />;
     case "Spring Boot":
-      icon = <FaLeaf />;
-      break;
-
+      return <FaLeaf />;
     case "Spring Security":
-      icon = <FaShieldAlt />;
-      break;
-
+      return <FaShieldAlt />;
     case "JSP":
-      icon = <FaFileCode />;
-      break;
-
+      return <FaFileCode />;
     case "Servlet":
-      icon = <FaGlobe />;
-      break;
-
+      return <FaGlobe />;
     case "HTML":
-      icon = <FaHtml5 />;
-      break;
-
+      return <FaHtml5 />;
     case "CSS":
-      icon = <FaCss3Alt />;
-      break;
-
+      return <FaCss3Alt />;
     case "JavaScript":
-      icon = <FaJs />;
-      break;
-
+      return <FaJs />;
     case "React":
-      icon = <FaReact />;
-      break;
-
+      return <FaReact />;
     case "Oracle":
-      icon = <FaDatabase />;
-      break;
-
+      return <FaDatabase />;
     case "Git":
-      icon = <FaGitAlt />;
-      break;
-
+      return <FaGitAlt />;
     case "GitHub":
-      icon = <FaGithub />;
-      break;
-
+      return <FaGithub />;
     default:
-      icon = <FaDatabase />;
+      return <FaDatabase />;
   }
+}
+
+function getLevelBadgeClass(level) {
+  switch (level) {
+    case "Advanced":
+      return "level-advanced";
+    case "Strong":
+      return "level-strong";
+    case "Proficient":
+      return "level-proficient";
+    default:
+      return "level-proficient";
+  }
+}
+
+function SkillCard({ skill }) {
+  const skillName = typeof skill === "object" ? skill.name : skill;
+  const skillDesc = typeof skill === "object" ? skill.desc : "";
+  const skillLevel = typeof skill === "object" ? skill.level : "Proficient";
+  const icon = getSkillIcon(skillName);
+  const badgeClass = getLevelBadgeClass(skillLevel);
 
   return (
-    <div className="skill-card">
-
-      <div className="skill-icon">
-        {icon}
+    <div className="skill-card glass-panel">
+      <div className="skill-card-top">
+        <div className="skill-icon-wrap">{icon}</div>
+        <span className={`skill-level-pill ${badgeClass}`}>{skillLevel}</span>
       </div>
 
-      <span>{skill}</span>
+      <h3 className="skill-name">{skillName}</h3>
+      {skillDesc && <p className="skill-desc-text">{skillDesc}</p>}
 
+      <div className="skill-card-glow"></div>
     </div>
   );
 }
