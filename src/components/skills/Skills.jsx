@@ -1,23 +1,33 @@
 import { useState, useRef, useEffect } from "react";
-import { FaJava, FaReact, FaDatabase, FaTools, FaServer, FaShieldAlt, FaKey, FaLayerGroup, FaHtml5, FaCss3Alt, FaJs, FaGitAlt } from "react-icons/fa";
+import { FaJava, FaReact, FaDatabase, FaTools, FaServer, FaShieldAlt, FaKey, FaLayerGroup, FaHtml5, FaCss3Alt, FaJs, FaGitAlt, FaCode } from "react-icons/fa";
 import { SiSpringboot, SiMongodb, SiPostman, SiHibernate } from "react-icons/si";
 import * as THREE from "three";
 import "./Skills.css";
 
 const SKILLS_DATA = [
   {
-    category: "backend",
-    categoryLabel: "BACKEND ARCHITECTURE",
-    tagline: "High-performance Java enterprise systems, RESTful microservices, and security pipelines",
+    category: "languages",
+    categoryLabel: "PROGRAMMING LANGUAGES",
+    tagline: "Core compiled and interpreted programming languages for robust system engineering",
     skills: [
-      { name: "Java", role: "Core OOP, Multithreading & Collections", icon: <FaJava /> },
-      { name: "Spring Boot", role: "Microservices & REST APIs", icon: <SiSpringboot /> },
+      { name: "Java", role: "OOP, Multithreading & Collections", icon: <FaJava /> },
+      { name: "C", role: "Low-Level Foundations & Memory Logic", icon: <FaCode /> },
+      { name: "C++", role: "OOP Principles & System Concepts", icon: <FaCode /> },
+      { name: "JavaScript", role: "ES6+, Async/Await & DOM Architecture", icon: <FaJs /> },
+    ],
+  },
+  {
+    category: "backend",
+    categoryLabel: "BACKEND & ENTERPRISE JAVA",
+    tagline: "Enterprise Java ecosystem, Spring Boot microservices, and security filter chains",
+    skills: [
+      { name: "Spring Boot", role: "Microservices & REST Controllers", icon: <SiSpringboot /> },
       { name: "Spring MVC", role: "Model-View-Controller Abstraction", icon: <FaServer /> },
       { name: "REST APIs", role: "Contract Design & HTTP Verbs", icon: <FaLayerGroup /> },
-      { name: "Spring Security", role: "Filter Chains & RBAC", icon: <FaShieldAlt /> },
-      { name: "JWT", role: "Stateless Token Authentication", icon: <FaKey /> },
-      { name: "JSP", role: "Dynamic Server Pages", icon: <FaServer /> },
-      { name: "Servlets", role: "HTTP Request & Session Handling", icon: <FaServer /> },
+      { name: "Spring Security", role: "Filter Chains & RBAC Security", icon: <FaShieldAlt /> },
+      { name: "JWT", role: "Stateless Token Authorization", icon: <FaKey /> },
+      { name: "Servlets", role: "HTTP Request & Session Control", icon: <FaServer /> },
+      { name: "JSP", role: "Dynamic Server-Side Pages", icon: <FaServer /> },
       { name: "JDBC", role: "Database Connectivity & Transactions", icon: <FaDatabase /> },
     ],
   },
@@ -27,20 +37,18 @@ const SKILLS_DATA = [
     tagline: "Component-driven, responsive user interfaces with modern client-side state management",
     skills: [
       { name: "React", role: "Component Architecture & Hooks", icon: <FaReact /> },
-      { name: "JavaScript", role: "ES6+, Async/Await, DOM Logic", icon: <FaJs /> },
       { name: "HTML5", role: "Semantic Structure & Accessibility", icon: <FaHtml5 /> },
-      { name: "CSS3", role: "Custom CSS, Animations & Responsive Design", icon: <FaCss3Alt /> },
+      { name: "CSS3", role: "Custom CSS, Animations & Responsiveness", icon: <FaCss3Alt /> },
     ],
   },
   {
     category: "database",
-    categoryLabel: "DATABASE PERSISTENCE",
-    tagline: "Cloud NoSQL document models and ACID-compliant relational SQL databases",
+    categoryLabel: "DATABASE ARCHITECTURE",
+    tagline: "Cloud NoSQL document clusters and enterprise relational database schemas",
     skills: [
-      { name: "MongoDB", role: "NoSQL Document Modeling", icon: <SiMongodb /> },
-      { name: "MongoDB Atlas", role: "Cloud Cluster & Indexing", icon: <SiMongodb /> },
-      { name: "Oracle", role: "Enterprise Relational Database", icon: <FaDatabase /> },
-      { name: "SQL", role: "Complex Queries, Joins & Constraints", icon: <FaDatabase /> },
+      { name: "MongoDB", role: "NoSQL Flexible Document Modeling", icon: <SiMongodb /> },
+      { name: "MongoDB Atlas", role: "Cloud Cluster & Performance Indexing", icon: <SiMongodb /> },
+      { name: "Oracle", role: "Enterprise Relational Database & SQL", icon: <FaDatabase /> },
     ],
   },
   {
@@ -49,7 +57,7 @@ const SKILLS_DATA = [
     tagline: "ORMs, persistence frameworks, API testing suites, version control, and IDEs",
     skills: [
       { name: "Hibernate", role: "ORM & Entity Mapping", icon: <SiHibernate /> },
-      { name: "Spring Data JPA", role: "Repository Pattern & CRUD Operations", icon: <FaDatabase /> },
+      { name: "Spring Data JPA", role: "Repository Abstraction & CRUD", icon: <FaDatabase /> },
       { name: "Git", role: "Version Control & Branch Management", icon: <FaGitAlt /> },
       { name: "GitHub", role: "Code Hosting & Collaboration", icon: <FaTools /> },
       { name: "Postman", role: "API Endpoint Testing & Validation", icon: <SiPostman /> },
@@ -216,6 +224,8 @@ function Skills() {
       ? SKILLS_DATA
       : SKILLS_DATA.filter((cat) => cat.category === activeTab);
 
+  const totalSkillsCount = SKILLS_DATA.reduce((acc, cat) => acc + cat.skills.length, 0);
+
   return (
     <section className="skills-section section-container" id="skills">
       <div className="section-header">
@@ -224,7 +234,7 @@ function Skills() {
           TECHNICAL <span>COMPETENCIES</span>
         </h2>
         <p className="section-subtitle">
-          Applied technologies and frameworks utilized across real full-stack web architectures.
+          Applied programming languages, enterprise Java frameworks, and cloud persistence architectures.
         </p>
       </div>
 
@@ -235,34 +245,41 @@ function Skills() {
           onClick={() => setActiveTab("all")}
         >
           <span>ALL TECHNOLOGIES</span>
-          <span className="tab-count">26</span>
+          <span className="tab-count">{totalSkillsCount}</span>
+        </button>
+        <button
+          className={`skills-tab-btn ${activeTab === "languages" ? "active" : ""}`}
+          onClick={() => setActiveTab("languages")}
+        >
+          <span>LANGUAGES (C, C++, JAVA, JS)</span>
+          <span className="tab-count">4</span>
         </button>
         <button
           className={`skills-tab-btn ${activeTab === "backend" ? "active" : ""}`}
           onClick={() => setActiveTab("backend")}
         >
-          <span>BACKEND ARCHITECTURE</span>
-          <span className="tab-count">9</span>
+          <span>BACKEND & ENTERPRISE</span>
+          <span className="tab-count">8</span>
         </button>
         <button
           className={`skills-tab-btn ${activeTab === "frontend" ? "active" : ""}`}
           onClick={() => setActiveTab("frontend")}
         >
           <span>FRONTEND & REACT</span>
-          <span className="tab-count">4</span>
+          <span className="tab-count">3</span>
         </button>
         <button
           className={`skills-tab-btn ${activeTab === "database" ? "active" : ""}`}
           onClick={() => setActiveTab("database")}
         >
-          <span>DATABASE PERSISTENCE</span>
-          <span className="tab-count">4</span>
+          <span>DATABASES</span>
+          <span className="tab-count">3</span>
         </button>
         <button
           className={`skills-tab-btn ${activeTab === "tools" ? "active" : ""}`}
           onClick={() => setActiveTab("tools")}
         >
-          <span>TOOLS & JAVA WEB</span>
+          <span>TOOLS & ORM</span>
           <span className="tab-count">9</span>
         </button>
       </div>
@@ -273,7 +290,7 @@ function Skills() {
         <div className="skills-visual-panel gold-panel">
           <div className="visual-panel-header">
             <span className="visual-badge">LIVE ORBITAL SYSTEM</span>
-            <h3 className="visual-title">Full-Stack Constellation</h3>
+            <h3 className="visual-title">Technology Constellation</h3>
             <p className="visual-desc">
               Synchronized interaction between client UI, Spring services, security layers, and cloud document clusters.
             </p>

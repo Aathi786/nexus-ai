@@ -1,4 +1,4 @@
-import { FaGraduationCap, FaJava, FaServer, FaShieldAlt, FaReact, FaLayerGroup, FaBullseye } from "react-icons/fa";
+import { FaGraduationCap, FaJava, FaServer, FaShieldAlt, FaReact, FaLayerGroup, FaBullseye, FaCode } from "react-icons/fa";
 import { SiSpringboot, SiMongodb } from "react-icons/si";
 import "./Journey.css";
 
@@ -8,43 +8,51 @@ const JOURNEY_MILESTONES = [
     title: "B.Sc. Computer Science Foundation",
     focus: "Core Computer Science Fundamentals",
     icon: <FaGraduationCap />,
-    desc: "Acquired strong foundations in object-oriented programming principles, algorithms, data structures, and relational database concepts.",
-    tags: ["Computer Science", "Algorithms", "OOP Concepts", "Relational Logic"],
+    desc: "Acquired strong foundations in object-oriented programming principles, algorithms, data structures, and relational logic.",
+    tags: ["Computer Science", "Algorithms", "Data Structures", "Relational Logic"],
   },
   {
     step: "02",
-    title: "Core Java Engineering",
+    title: "C & C++ Programming Foundations",
+    focus: "Low-Level Logic & OOP Foundations",
+    icon: <FaCode />,
+    desc: "Built structured problem-solving foundations in C and C++, mastering memory management, pointers, and object-oriented paradigms.",
+    tags: ["C", "C++", "Memory Management", "Pointers", "OOP"],
+  },
+  {
+    step: "03",
+    title: "Java Full Stack Development",
     focus: "Object-Oriented & Concurrent Java",
     icon: <FaJava />,
     desc: "Mastered Java syntax, multithreading, exception management, collections framework, and clean modular code architecture.",
     tags: ["Java Core", "Collections Framework", "Multithreading", "OOP"],
   },
   {
-    step: "03",
+    step: "04",
     title: "Advanced Java & Web Persistence",
     focus: "JSP, Servlets, JDBC & Oracle Database",
     icon: <FaServer />,
-    desc: "Built dynamic Java EE applications utilizing Servlets as controllers, JSP for dynamic views, and JDBC connection pools communicating with Oracle SQL.",
-    tags: ["Servlets", "JSP", "JDBC", "Oracle SQL", "MVC Pattern"],
-  },
-  {
-    step: "04",
-    title: "Spring Framework & Spring Boot",
-    focus: "Enterprise RESTful Microservices",
-    icon: <SiSpringboot />,
-    desc: "Advanced into Spring Boot ecosystem, dependency injection, Spring Data JPA repositories, Hibernate ORM, and scalable REST API architectures.",
-    tags: ["Spring Boot", "Spring MVC", "Spring Data JPA", "Hibernate", "REST APIs"],
+    desc: "Built dynamic Java EE applications utilizing Servlets as controllers, JSP for dynamic views, and JDBC connection pools with Oracle database.",
+    tags: ["Servlets", "JSP", "JDBC", "Oracle Database", "MVC Architecture"],
   },
   {
     step: "05",
-    title: "Security & Stateless Auth Engineering",
-    focus: "Spring Security & JWT Filter Chains",
-    icon: <FaShieldAlt />,
-    desc: "Engineered robust application security incorporating JWT token validation, custom security filters, CORS policies, and role-based access control.",
-    tags: ["Spring Security", "JWT Authentication", "Role-Based Access", "CORS"],
+    title: "Spring Framework & Spring Boot",
+    focus: "Enterprise RESTful Microservices",
+    icon: <SiSpringboot />,
+    desc: "Advanced into the Spring Boot ecosystem, dependency injection, Spring Data JPA repositories, Hibernate ORM, and REST APIs.",
+    tags: ["Spring Boot", "Spring MVC", "Spring Data JPA", "Hibernate", "REST APIs"],
   },
   {
     step: "06",
+    title: "Security & Stateless Auth Engineering",
+    focus: "Spring Security & JWT Filter Chains",
+    icon: <FaShieldAlt />,
+    desc: "Engineered application security incorporating JWT token validation, custom security filters, CORS policies, and role-based access control.",
+    tags: ["Spring Security", "JWT Authentication", "Role-Based Access", "CORS"],
+  },
+  {
+    step: "07",
     title: "Modern Reactive Frontend",
     focus: "React Component Architecture",
     icon: <FaReact />,
@@ -52,27 +60,27 @@ const JOURNEY_MILESTONES = [
     tags: ["React", "JavaScript ES6+", "Component State", "Axios Interceptors"],
   },
   {
-    step: "07",
+    step: "08",
     title: "Cloud NoSQL Persistence",
     focus: "MongoDB & MongoDB Atlas",
     icon: <SiMongodb />,
-    desc: "Engineered scalable document persistence architectures with MongoDB Atlas cloud clusters, indexing, and schema modeling for dynamic social data.",
+    desc: "Engineered scalable document persistence architectures with MongoDB Atlas cloud clusters, indexing, and schema modeling.",
     tags: ["MongoDB", "MongoDB Atlas", "NoSQL Document Modeling", "Cloud DB"],
   },
   {
-    step: "08",
-    title: "Full-Stack Application Deployment",
+    step: "09",
+    title: "Full-Stack Application Development",
     focus: "End-to-End Social Media & Enterprise Systems",
     icon: <FaLayerGroup />,
-    desc: "Successfully built and deployed end-to-end applications including the featured full-stack Instagram social platform, Course Registration System, and Employee Management System.",
+    desc: "Built and deployed end-to-end applications including the featured full-stack Instagram social platform, Course Registration System, and Employee Management System.",
     tags: ["Full-Stack Integration", "Cloud Deployment", "API Synchronization"],
   },
   {
-    step: "09",
+    step: "10",
     title: "Current Goal & Next Milestone",
     focus: "Software Developer / Full Stack Engineer",
     icon: <FaBullseye />,
-    desc: "Fresher seeking software engineering opportunities to contribute high-impact Java full-stack code, solve complex technical challenges, and build reliable software.",
+    desc: "Fresher seeking software engineering opportunities to contribute high-impact Java full-stack code, solve technical challenges, and build reliable software.",
     tags: ["Software Engineer", "Full Stack Developer", "Ready for Opportunities"],
     highlight: true,
   },
@@ -87,7 +95,7 @@ function Journey() {
           DEVELOPMENT <span>JOURNEY</span>
         </h2>
         <p className="section-subtitle">
-          From computer science fundamentals to building complete enterprise Java full-stack applications.
+          From computer science fundamentals, C/C++ to enterprise Java full-stack applications.
         </p>
       </div>
 

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FaGithub, FaShieldAlt, FaUsers, FaGraduationCap, FaExternalLinkAlt, FaCode, FaCheck } from "react-icons/fa";
+import { FaGithub, FaShieldAlt, FaUsers, FaGraduationCap, FaExternalLinkAlt, FaRobot } from "react-icons/fa";
 import "./OtherProjects.css";
 
 const OTHER_PROJECTS = [
@@ -10,15 +10,13 @@ const OTHER_PROJECTS = [
     category: "Spring Boot Enterprise",
     tagline: "Role-based academic course management with automated prerequisite validation and relational scheduling.",
     tech: ["Spring Boot", "Spring Security", "Oracle Database", "REST APIs", "Spring Data JPA", "Hibernate"],
-    description:
-      "Enterprise web application empowering students to register for semester courses, manage academic schedules, and prevent timing conflicts with role-based security access controls.",
-    architecture:
-      "Layered MVC architecture utilizing Spring Security filter chains for role authorization (Student / Faculty / Admin), JPA repositories for relational persistence, and Oracle SQL.",
+    whatItDoes: "Empowers students to register for semester courses, manages seat capacities, and prevents scheduling conflicts.",
+    whatIBuilt: "Engineered a Spring Boot backend with role-based JWT access (Student / Faculty / Admin), prerequisite checks, and Oracle SQL persistence.",
     highlights: [
       "Role-Based Access Control (Student / Faculty / Admin)",
-      "Spring Security JWT & Session Protection",
-      "Course Capacity & Prerequisite Validation Engine",
-      "Spring Data JPA with Oracle SQL Persistence",
+      "Automated Prerequisite & Seat Capacity Engine",
+      "Spring Data JPA with Oracle Relational Persistence",
+      "RESTful API Architecture & Exception Handling",
     ],
     github: "https://github.com/Aathi786/Course_Registration_System",
     metric: "RBAC Security",
@@ -28,17 +26,15 @@ const OTHER_PROJECTS = [
     num: "02",
     id: "ems",
     title: "Employee Management System",
-    category: "Java EE & Relational Persistence",
+    category: "Java EE & Persistence",
     tagline: "Full-cycle workforce management system with ACID-compliant database persistence and session tracking.",
+    whatItDoes: "Streamlines employee record tracking, department designations, payroll metadata, and administrative operations.",
+    whatIBuilt: "Architected a classic Java EE application featuring modular MVC separation, automated JDBC transaction pooling, and session control.",
     tech: ["Java", "JSP", "Servlet", "JDBC", "Oracle SQL", "HTML/CSS"],
-    description:
-      "Enterprise web application engineered to manage workforce records, department hierarchies, and administrative privileges with complete CRUD transactional workflows.",
-    architecture:
-      "Classic Java EE MVC separation with Servlets as controllers, JSP for dynamic templating, and DAO design patterns managing JDBC connection pools with Oracle database.",
     highlights: [
-      "Complete CRUD Operations on Employee Profiles",
+      "Full CRUD Operations on Employee Records",
       "ACID-Compliant JDBC Connection Management",
-      "Session-Based User Authentication & Protection",
+      "Session-Based Authentication & Role Privileges",
       "Department & Designation Hierarchy Management",
     ],
     github: "https://github.com/Aathi786/Employee-Management-System",
@@ -49,17 +45,15 @@ const OTHER_PROJECTS = [
     num: "03",
     id: "quiz",
     title: "Quiz Management System",
-    category: "Java EE Web Platform",
+    category: "Java EE Dynamic Web",
     tagline: "Interactive assessment platform with dynamic question sequencing and automated real-time score evaluation.",
+    whatItDoes: "Serves randomized question banks, tracks timed tests, and computes instant result scorecards.",
+    whatIBuilt: "Developed a stateful Java web evaluation engine tracking test progression in real-time and persisting scores to Oracle database tables.",
     tech: ["Java", "JSP", "Servlet", "Oracle DB", "JavaScript", "HTML/CSS"],
-    description:
-      "Automated evaluation platform featuring randomized question sequencing, timed assessment sessions, question categorization, and performance history reports.",
-    architecture:
-      "Stateful session-based architecture tracking active quiz progressions in real-time and persisting final scorecards to Oracle relational tables.",
     highlights: [
-      "Automated Real-Time Score Calculation Engine",
+      "Real-Time Automated Score Calculation",
       "Dynamic Question Categorization & Randomization",
-      "User Result History & Performance Reporting",
+      "User Result History & Performance Tracking",
       "Admin Assessment Creation & Editing Interface",
     ],
     github: "https://github.com/Aathi786/Quizz_Game",
@@ -69,23 +63,21 @@ const OTHER_PROJECTS = [
   {
     num: "04",
     id: "nexus",
-    title: "Nexus AI Developer Portfolio",
-    category: "Modern React & 3D Web",
-    tagline: "High-performance personal developer portfolio featuring Three.js 3D software architectures and black + gold luxury aesthetics.",
-    tech: ["React 19", "Three.js", "GSAP", "Vite", "EmailJS", "Custom CSS"],
-    description:
-      "Cinematic personal developer portfolio engineered with responsive Three.js hardware-accelerated 3D systems, interactive technology matrix, and integrated EmailJS dispatch.",
-    architecture:
-      "Modular component architecture with custom WebGL canvas lifecycle management, smooth Lenis scrolling, and responsive luxury styling.",
+    title: "Nexus AI Assistant",
+    category: "AI & Modern Web",
+    tagline: "Intelligent developer assistant interface featuring interactive full-stack conversational workflows.",
+    whatItDoes: "Provides real-time interactive developer query processing and dynamic prompt response visualization.",
+    whatIBuilt: "Engineered responsive client architecture, asynchronous API payload streaming, and clean state synchronization.",
+    tech: ["React", "JavaScript", "REST APIs", "Modern CSS", "Vite"],
     highlights: [
-      "Interactive 3D Software Architecture Centerpiece",
-      "Responsive Orbiting Technology Matrix",
-      "Integrated EmailJS Direct Dispatch Channel",
-      "Mobile-Optimized Luxury Black + Gold Design System",
+      "Asynchronous Response Streaming & Parsing",
+      "Dynamic Query Interface & Prompt Handling",
+      "Component State Synchronization",
+      "Responsive Dark-Themed UI Architecture",
     ],
     github: "https://github.com/Aathi786/nexus-ai",
-    metric: "Three.js + React",
-    icon: <FaCode />,
+    metric: "React + AI Stream",
+    icon: <FaRobot />,
   },
 ];
 
@@ -96,29 +88,18 @@ function OtherProjects() {
     if (filter === "all") return true;
     if (filter === "spring") return p.category.includes("Spring Boot");
     if (filter === "javaee") return p.category.includes("Java EE");
-    if (filter === "react") return p.category.includes("React");
     return true;
   });
 
   return (
     <section className="other-projects-section section-container" id="projects">
-      <div className="section-header">
-        <span className="section-tag">ENGINEERING PORTFOLIO</span>
-        <h2 className="section-title">
-          MORE <span>FEATURED SYSTEMS</span>
-        </h2>
-        <p className="section-subtitle">
-          Enterprise Java applications, Spring Boot architectures, and relational database systems built from scratch.
-        </p>
-      </div>
-
-      {/* Filter Tabs */}
+      {/* Direct Filter Tabs without large redundant headers */}
       <div className="other-projects-filters">
         <button
           className={`filter-btn ${filter === "all" ? "active" : ""}`}
           onClick={() => setFilter("all")}
         >
-          All Systems ({OTHER_PROJECTS.length})
+          All Applications ({OTHER_PROJECTS.length})
         </button>
         <button
           className={`filter-btn ${filter === "spring" ? "active" : ""}`}
@@ -132,19 +113,13 @@ function OtherProjects() {
         >
           Java EE & Servlets
         </button>
-        <button
-          className={`filter-btn ${filter === "react" ? "active" : ""}`}
-          onClick={() => setFilter("react")}
-        >
-          React & Creative Tech
-        </button>
       </div>
 
       {/* Projects Grid */}
       <div className="other-projects-grid">
         {filteredProjects.map((project) => (
           <div key={project.id} className="case-study-card gold-panel interactive-card">
-            {/* Card Header */}
+            {/* Card Top */}
             <div className="case-study-top">
               <div className="case-num-wrap">
                 <span className="case-num">{project.num}</span>
@@ -166,17 +141,14 @@ function OtherProjects() {
               ))}
             </div>
 
-            {/* Key Technical Highlights */}
-            <div className="case-highlights-box">
-              <span className="highlights-header">KEY CAPABILITIES</span>
-              <ul className="case-bullets">
-                {project.highlights.map((h, i) => (
-                  <li key={i} className="case-bullet-item">
-                    <FaCheck className="case-check" />
-                    <span>{h}</span>
-                  </li>
-                ))}
-              </ul>
+            {/* Short Scannable What it does / What I built */}
+            <div className="case-summary-box">
+              <p className="case-summary-line">
+                <strong>What it does:</strong> {project.whatItDoes}
+              </p>
+              <p className="case-summary-line">
+                <strong>What I built:</strong> {project.whatIBuilt}
+              </p>
             </div>
 
             {/* Card Footer Actions */}
@@ -191,10 +163,10 @@ function OtherProjects() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="case-github-btn"
-                title={`View ${project.title} source code on GitHub`}
+                title={`View ${project.title} on GitHub`}
               >
                 <FaGithub />
-                <span>VIEW REPOSITORY</span>
+                <span>GITHUB REPO</span>
                 <FaExternalLinkAlt className="ext-icon-sm" />
               </a>
             </div>

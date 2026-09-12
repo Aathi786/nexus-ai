@@ -1,14 +1,52 @@
-import { FaCode, FaShieldAlt, FaDatabase, FaLayerGroup, FaGraduationCap, FaCheckCircle } from "react-icons/fa";
+import { useState, useRef, useEffect } from "react";
+import {
+  FaCode,
+  FaShieldAlt,
+  FaDatabase,
+  FaLayerGroup,
+  FaGraduationCap,
+  FaCheckCircle,
+} from "react-icons/fa";
 import "./About.css";
 
 function About() {
+  const cardRef = useRef(null);
+  const [tilt, setTilt] = useState({ x: 0, y: 0, glareX: 50, glareY: 50, opacity: 0 });
+  const [isTouch, setIsTouch] = useState(false);
+
+  useEffect(() => {
+    if (window.matchMedia("(pointer: coarse)").matches || "ontouchstart" in window) {
+      setIsTouch(true);
+    }
+  }, []);
+
+  const handleMouseMove = (e) => {
+    if (isTouch || !cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    const rotateX = ((y - centerY) / centerY) * -9;
+    const rotateY = ((x - centerX) / centerX) * 9;
+    const glareX = (x / rect.width) * 100;
+    const glareY = (y / rect.height) * 100;
+
+    setTilt({ x: rotateX, y: rotateY, glareX, glareY, opacity: 0.25 });
+  };
+
+  const handleMouseLeave = () => {
+    setTilt({ x: 0, y: 0, glareX: 50, glareY: 50, opacity: 0 });
+  };
+
   const engineeringPillars = [
     {
       id: "fullstack",
       icon: <FaLayerGroup />,
-      title: "Full-Stack Synergy",
+      title: "Full-Stack Integration",
       description:
-        "Connecting dynamic React user interfaces with robust Spring Boot REST services through clean API contracts and state synchronization.",
+        "Connecting React user interfaces with Spring Boot REST services through clean API contracts and state synchronization.",
     },
     {
       id: "security",
@@ -20,9 +58,9 @@ function About() {
     {
       id: "database",
       icon: <FaDatabase />,
-      title: "Polyglot Persistence",
+      title: "Database Architecture",
       description:
-        "Designing document schemas in MongoDB Atlas for rapid social data, paired with relational SQL database design in Oracle.",
+        "Designing document schemas in MongoDB Atlas for rapid social data, paired with relational database design in Oracle.",
     },
     {
       id: "clean-arch",
@@ -35,7 +73,7 @@ function About() {
 
   return (
     <section className="about-section section-container" id="about">
-      {/* Background Decorative Gold Accents */}
+      {/* Background Subtle Ambient Gold Lighting */}
       <div className="about-bg-decoration" aria-hidden="true">
         <div className="about-gold-glow"></div>
       </div>
@@ -51,59 +89,91 @@ function About() {
       </div>
 
       <div className="about-grid">
-        {/* Left Narrative Column */}
-        <div className="about-narrative-card gold-panel">
-          <div className="narrative-badge">
-            <FaGraduationCap className="badge-icon" />
-            <span>B.Sc. COMPUTER SCIENCE GRADUATE</span>
+        {/* Left Column: Interactive 3D Profile Card */}
+        <div
+          ref={cardRef}
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeave}
+          className="about-profile-card gold-panel"
+          style={{
+            transform: `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
+          }}
+        >
+          {/* Dynamic Specular Gold Glare */}
+          <div
+            className="card-specular-glare"
+            style={{
+              background: `radial-gradient(circle at ${tilt.glareX}% ${tilt.glareY}%, rgba(212, 175, 55, ${tilt.opacity}) 0%, transparent 65%)`,
+            }}
+            aria-hidden="true"
+          />
+
+          <div className="profile-portrait-frame">
+            <img
+              src="/avatar.png"
+              alt="Aathithya R - Java Full Stack Developer"
+              className="profile-portrait-img"
+              loading="lazy"
+            />
+            <div className="portrait-rim-glow" aria-hidden="true"></div>
           </div>
 
-          <h3 className="narrative-headline">
-            Driven by clean architecture, security, and real-world execution.
-          </h3>
-
-          <div className="narrative-paragraphs">
-            <p>
-              I am a <strong>B.Sc. Computer Science graduate</strong> and entry-level software engineer focused on Java full-stack web development. I specialize in building complete, production-ready applications from the database up to the user interface.
-            </p>
-            <p>
-              My recent engineering work centers on pairing <strong>React</strong> with <strong>Spring Boot</strong>, implementing end-to-end authentication via <strong>Spring Security & JWT</strong>, and managing cloud-persisted data in <strong>MongoDB Atlas</strong>.
-            </p>
-          </div>
-
-          {/* Quick Truthful Credentials */}
-          <div className="narrative-checkpoints">
-            <div className="checkpoint-item">
-              <FaCheckCircle className="check-icon" />
-              <span>Fresher actively seeking developer / software engineering roles</span>
+          <div className="profile-card-meta">
+            <div className="profile-badge">
+              <FaGraduationCap className="badge-icon" />
+              <span>B.SC. COMPUTER SCIENCE</span>
             </div>
-            <div className="checkpoint-item">
-              <FaCheckCircle className="check-icon" />
-              <span>Proven track record building complete full-stack web apps</span>
-            </div>
-            <div className="checkpoint-item">
-              <FaCheckCircle className="check-icon" />
-              <span>Hands-on with REST APIs, JWT pipelines, and NoSQL/SQL databases</span>
-            </div>
-          </div>
 
-          <div className="narrative-footer-line">
-            <div className="gold-line"></div>
+            <h3 className="profile-name">Aathithya R</h3>
+            <p className="profile-role">Java Full Stack Developer</p>
+
+            <div className="profile-checkpoints">
+              <div className="profile-check-item">
+                <FaCheckCircle className="check-icon" />
+                <span>Fresher seeking software engineering roles</span>
+              </div>
+              <div className="profile-check-item">
+                <FaCheckCircle className="check-icon" />
+                <span>Full-stack application development</span>
+              </div>
+              <div className="profile-check-item">
+                <FaCheckCircle className="check-icon" />
+                <span>React, Spring Boot, JWT & MongoDB Atlas</span>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Right Engineering Pillars Grid */}
-        <div className="about-pillars-grid">
-          {engineeringPillars.map((pillar, index) => (
-            <div key={pillar.id} className="pillar-card glass-panel">
-              <div className="pillar-header">
-                <div className="pillar-icon-box">{pillar.icon}</div>
-                <span className="pillar-index">0{index + 1}</span>
-              </div>
-              <h4 className="pillar-title">{pillar.title}</h4>
-              <p className="pillar-desc">{pillar.description}</p>
+        {/* Right Column: Narrative & Engineering Pillars */}
+        <div className="about-content-column">
+          {/* Top Narrative Card */}
+          <div className="about-narrative-box gold-panel">
+            <h3 className="narrative-headline">
+              Driven by clean architecture, security, and practical execution.
+            </h3>
+            <div className="narrative-body">
+              <p>
+                I am a <strong>B.Sc. Computer Science graduate</strong> and entry-level software engineer focused on Java full-stack web development. I engineer end-to-end applications from the database up to the user interface.
+              </p>
+              <p>
+                My core stack centers on pairing <strong>React</strong> with <strong>Spring Boot</strong>, implementing stateless authentication via <strong>Spring Security & JWT</strong>, and managing cloud persistence in <strong>MongoDB Atlas</strong> and <strong>Oracle</strong>.
+              </p>
             </div>
-          ))}
+          </div>
+
+          {/* Bottom 2x2 Pillars Grid */}
+          <div className="about-pillars-grid">
+            {engineeringPillars.map((pillar, index) => (
+              <div key={pillar.id} className="pillar-card glass-panel interactive-card">
+                <div className="pillar-header">
+                  <div className="pillar-icon-box">{pillar.icon}</div>
+                  <span className="pillar-index">0{index + 1}</span>
+                </div>
+                <h4 className="pillar-title">{pillar.title}</h4>
+                <p className="pillar-desc">{pillar.description}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
