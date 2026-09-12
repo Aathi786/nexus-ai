@@ -2,7 +2,9 @@
 @import "./animations.css";
 
 /* Base Resets */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -15,7 +17,8 @@ html {
   background-color: var(--bg-void);
 }
 
-html.lenis, html.lenis body {
+html.lenis,
+html.lenis body {
   height: auto;
 }
 
@@ -43,7 +46,12 @@ body {
 }
 
 /* Headings with Luxury Typography */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: 'Outfit', sans-serif;
   font-weight: 700;
   letter-spacing: -0.02em;
@@ -58,7 +66,8 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'JetBrains Mono', monospace;
 }
 
-code, pre {
+code,
+pre {
   font-family: 'JetBrains Mono', monospace, 'Courier New';
 }
 
@@ -142,10 +151,13 @@ img {
 }
 
 /* Typography Gradient Utilities */
+
 .gold-gradient-text {
   background: var(--gradient-gold);
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  color: transparent;
 }
 
 .gold-badge {
@@ -225,8 +237,10 @@ section[id] {
 
 .section-title span {
   background: var(--gradient-gold);
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  color: transparent;
 }
 
 .section-subtitle {
@@ -235,6 +249,35 @@ section[id] {
   max-width: 640px;
   margin: 0 auto;
   line-height: 1.7;
+}
+
+/* Active Scrolling Cinematic Text Depth Transitions */
+.section-title,
+.section-subtitle,
+.hero-title,
+.hero-role-subtitle,
+.narrative-headline,
+.showcase-detail-heading {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
+  will-change: transform;
+}
+
+body.is-scrolling .section-title,
+body.is-scrolling .hero-title {
+  transform: scale(0.985) translateY(1px);
+  opacity: 0.94;
+}
+
+body.is-scrolling .section-subtitle,
+body.is-scrolling .hero-role-subtitle {
+  transform: scale(0.99) translateY(1px);
+  opacity: 0.88;
+}
+
+body.is-scrolling .narrative-headline,
+body.is-scrolling .showcase-detail-heading {
+  transform: scale(0.99) translateY(1px);
+  opacity: 0.94;
 }
 
 /* Interactive Luxury Button Styles */
@@ -315,17 +358,64 @@ section[id] {
 }
 
 /* Accessible focus visible */
-a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
   outline: 2px solid var(--gold-primary);
   outline-offset: 3px;
 }
 
+/* Mobile Spacing & Breathing Room */
+@media (max-width: 768px) {
+  .section-container {
+    padding: 78px 20px;
+  }
+
+  .section-header {
+    margin-bottom: 42px;
+  }
+
+  .section-title {
+    margin-bottom: 14px;
+    font-size: clamp(26px, 6.5vw, 34px);
+  }
+
+  .section-subtitle {
+    font-size: 14.5px;
+    line-height: 1.6;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-container {
+    padding: 68px 16px;
+  }
+
+  .section-header {
+    margin-bottom: 36px;
+  }
+}
+
 /* Reduced Motion Support */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+
+  body.is-scrolling .section-title,
+  body.is-scrolling .hero-title,
+  body.is-scrolling .section-subtitle,
+  body.is-scrolling .hero-role-subtitle,
+  body.is-scrolling .narrative-headline,
+  body.is-scrolling .showcase-detail-heading {
+    transform: none !important;
+    opacity: 1 !important;
   }
 }

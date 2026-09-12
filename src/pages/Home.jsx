@@ -17,45 +17,68 @@ function Home() {
   useEffect(() => {
     // Initialize Lenis smooth scroll
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!prefersReducedMotion) {
+      const lenis = new Lenis({
+        duration: 1.1,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        orientation: "vertical",
+        gestureOrientation: "vertical",
+        smoothWheel: true,
+        wheelMultiplier: 0.9,
+        touchMultiplier: 1.5,
+      });
+
+      let frameId;
+      function raf(time) {
+        lenis.raf(time);
+        frameId = requestAnimationFrame(raf);
+      }
+      frameId = requestAnimationFrame(raf);
+
+      // Global anchor interceptor for Lenis smooth scrolling
+      const handleAnchorClick = (e) => {
+        const anchor = e.target.closest('a[href^="#"]');
+        if (!anchor) return;
+        const targetId = anchor.getAttribute("href");
+        if (targetId && targetId !== "#") {
+          const targetEl = document.querySelector(targetId);
+          if (targetEl) {
+            e.preventDefault();
+            lenis.scrollTo(targetEl, { offset: -80 });
+          }
+        }
+      };
+
+      document.addEventListener("click", handleAnchorClick);
+
+      return () => {
+        cancelAnimationFrame(frameId);
+        document.removeEventListener("click", handleAnchorClick);
+        lenis.destroy();
+      };
+    }
+  }, []);
+
+  // Lightweight global scroll-stop detector for subtle cinematic text depth
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (prefersReducedMotion) return;
 
-    const lenis = new Lenis({
-      duration: 1.1,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: "vertical",
-      gestureOrientation: "vertical",
-      smoothWheel: true,
-      wheelMultiplier: 0.9,
-      touchMultiplier: 1.5,
-    });
-
-    let frameId;
-    function raf(time) {
-      lenis.raf(time);
-      frameId = requestAnimationFrame(raf);
-    }
-    frameId = requestAnimationFrame(raf);
-
-    // Global anchor interceptor for Lenis smooth scrolling
-    const handleAnchorClick = (e) => {
-      const anchor = e.target.closest('a[href^="#"]');
-      if (!anchor) return;
-      const targetId = anchor.getAttribute("href");
-      if (targetId && targetId !== "#") {
-        const targetEl = document.querySelector(targetId);
-        if (targetEl) {
-          e.preventDefault();
-          lenis.scrollTo(targetEl, { offset: -80 });
-        }
-      }
+    let scrollTimeout;
+    const handleScrollMotion = () => {
+      document.body.classList.add("is-scrolling");
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        document.body.classList.remove("is-scrolling");
+      }, 150);
     };
 
-    document.addEventListener("click", handleAnchorClick);
+    window.addEventListener("scroll", handleScrollMotion, { passive: true });
 
     return () => {
-      cancelAnimationFrame(frameId);
-      document.removeEventListener("click", handleAnchorClick);
-      lenis.destroy();
+      clearTimeout(scrollTimeout);
+      window.removeEventListener("scroll", handleScrollMotion);
+      document.body.classList.remove("is-scrolling");
     };
   }, []);
 

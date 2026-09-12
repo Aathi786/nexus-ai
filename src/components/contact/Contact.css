@@ -307,23 +307,29 @@
   color: #4ADE80;
 }
 
-/* Responsive */
+/* Responsive & Mobile Spacing */
 @media (max-width: 1024px) {
   .contact-main-grid {
     grid-template-columns: 1fr;
+    gap: 28px;
   }
 }
 
 @media (max-width: 600px) {
   .contact-cards-grid {
     grid-template-columns: 1fr;
+    gap: 12px;
   }
 
   .contact-form-column {
-    padding: 24px 18px;
+    padding: 26px 18px;
   }
 
   .contact-pitch-box {
-    padding: 24px 18px;
+    padding: 26px 18px;
+  }
+
+  .contact-channels-column {
+    gap: 18px;
   }
 }
