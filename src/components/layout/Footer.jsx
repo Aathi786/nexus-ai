@@ -1,4 +1,4 @@
-import { FaGithub, FaLinkedin, FaEnvelope, FaChevronUp } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaArrowUp, FaEnvelope } from "react-icons/fa";
 import "./Footer.css";
 
 function Footer() {
@@ -7,74 +7,93 @@ function Footer() {
   };
 
   return (
-    <footer className="footer-wrap">
+    <footer className="footer-wrapper">
+      <div className="footer-top-gold-line"></div>
+
       <div className="footer-container">
-        {/* Brand & Stack */}
+        {/* Brand Column */}
         <div className="footer-brand-col">
-          <h3 className="footer-name">Aathithya R</h3>
-          <p className="footer-role">Full-Stack Java Developer</p>
-          <p className="footer-tech-stack">Java • Spring Boot • React • Oracle SQL</p>
+          <div className="footer-brand-title">
+            AATHITHYA <span className="gold-gradient-text">R</span>
+          </div>
+          <p className="footer-role-text">
+            Java Full Stack Developer | Entry-Level Software Engineer
+          </p>
+          <p className="footer-subtext">
+            Architecting scalable Java backend microservices and responsive React interfaces.
+          </p>
         </div>
 
-        {/* Quick Links */}
+        {/* Quick Nav Column */}
         <div className="footer-nav-col">
-          <h4 className="footer-col-title">Navigation</h4>
-          <ul className="footer-links">
-            <li><a href="#home">Home</a></li>
+          <span className="footer-col-title">NAVIGATION</span>
+          <ul className="footer-nav-links">
             <li><a href="#about">About</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#skills">Skills</a></li>
+            <li><a href="#skills">Skills Matrix</a></li>
+            <li><a href="#featured-project">Featured Project</a></li>
+            <li><a href="#projects">All Projects</a></li>
+            <li><a href="#how-i-build">How I Build</a></li>
+            <li><a href="#journey">Journey</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
         </div>
 
-        {/* Direct Connect */}
-        <div className="footer-resources-col">
-          <h4 className="footer-col-title">Connect</h4>
-          <div className="footer-socials">
+        {/* Social & Connect Column */}
+        <div className="footer-social-col">
+          <span className="footer-col-title">CONNECT</span>
+          <div className="footer-social-buttons">
             <a
               href="https://github.com/Aathi786"
               target="_blank"
-              rel="noreferrer"
-              className="footer-social-btn"
+              rel="noopener noreferrer"
+              className="footer-social-pill"
               aria-label="GitHub Profile"
             >
-              <FaGithub /> GitHub
+              <FaGithub />
+              <span>GitHub</span>
             </a>
+
             <a
               href="https://www.linkedin.com/in/aathi77"
               target="_blank"
-              rel="noreferrer"
-              className="footer-social-btn"
+              rel="noopener noreferrer"
+              className="footer-social-pill"
               aria-label="LinkedIn Profile"
             >
-              <FaLinkedin /> LinkedIn
+              <FaLinkedin />
+              <span>LinkedIn</span>
             </a>
+
             <a
               href="mailto:aathi4488@gmail.com"
-              className="footer-social-btn"
-              aria-label="Email Aathithya"
+              className="footer-social-pill"
+              aria-label="Send Email"
             >
-              <FaEnvelope /> Email
+              <FaEnvelope />
+              <span>Email</span>
             </a>
           </div>
+
+          <button
+            onClick={scrollToTop}
+            className="footer-back-to-top-btn"
+            title="Scroll to top"
+            aria-label="Scroll back to top"
+          >
+            <span>BACK TO TOP</span>
+            <FaArrowUp />
+          </button>
         </div>
       </div>
 
-      {/* Bottom Bar */}
+      {/* Bottom Copyright Bar */}
       <div className="footer-bottom-bar">
         <p className="copyright-text">
-          © {new Date().getFullYear()} Aathithya R. Designed with clean engineering standards.
+          &copy; {new Date().getFullYear()} <strong>Aathithya R</strong>. All rights reserved.
         </p>
-
-        <button
-          className="scroll-top-btn"
-          onClick={scrollToTop}
-          title="Back to Top"
-          aria-label="Scroll back to top"
-        >
-          <FaChevronUp /> Top
-        </button>
+        <div className="footer-tech-signature">
+          <span>Engineered with React 19, Three.js & Java Spirit</span>
+        </div>
       </div>
     </footer>
   );

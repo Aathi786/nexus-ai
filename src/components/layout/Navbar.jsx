@@ -1,18 +1,18 @@
 import { useState, useEffect } from "react";
-import { FaBars, FaTimes, FaFilePdf, FaDownload, FaAtom } from "react-icons/fa";
+import { FaBars, FaTimes, FaGithub, FaLinkedin, FaFileAlt, FaArrowRight } from "react-icons/fa";
 import "./Navbar.css";
 
-function Navbar({ onToggleGravity }) {
+function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState("home");
+  const [activeSection, setActiveSection] = useState("hero");
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 25);
+      setScrolled(window.scrollY > 30);
 
-      const sections = ["home", "about", "projects", "skills", "terminal", "contact"];
-      const scrollPosition = window.scrollY + 140;
+      const sections = ["hero", "about", "skills", "projects", "journey", "contact"];
+      const scrollPosition = window.scrollY + 180;
 
       for (const sectionId of sections) {
         const el = document.getElementById(sectionId);
@@ -32,29 +32,31 @@ function Navbar({ onToggleGravity }) {
   }, []);
 
   const navLinks = [
-    { id: "home", label: "Home" },
-    { id: "about", label: "About" },
-    { id: "projects", label: "Projects" },
-    { id: "skills", label: "Skills" },
-    { id: "contact", label: "Contact" },
+    { id: "about", label: "ABOUT" },
+    { id: "skills", label: "SKILLS" },
+    { id: "projects", label: "PROJECTS" },
+    { id: "journey", label: "JOURNEY" },
+    { id: "contact", label: "CONTACT" },
   ];
 
   return (
-    <header className={`navbar-wrapper ${scrolled ? "scrolled" : ""}`}>
-      <nav className="navbar glass-panel">
-        {/* Brand Logo */}
-        <a href="#home" className="logo" onClick={() => setMenuOpen(false)}>
-          <span className="logo-dot"></span>
-          <span className="logo-text">AATHITHYA<span className="logo-highlight">.DEV</span></span>
+    <header className={`navbar-header ${scrolled ? "scrolled" : ""}`}>
+      <nav className="navbar-container">
+        {/* Brand */}
+        <a href="#hero" className="navbar-brand" onClick={() => setMenuOpen(false)}>
+          <span className="brand-symbol">◆</span>
+          <span className="brand-name">
+            AATHITHYA <span className="brand-gold">R</span>
+          </span>
         </a>
 
-        {/* Desktop Navigation Links */}
-        <ul className="nav-links">
+        {/* Desktop Nav Links */}
+        <ul className="navbar-links">
           {navLinks.map((link) => (
             <li key={link.id}>
               <a
                 href={`#${link.id}`}
-                className={activeSection === link.id ? "active" : ""}
+                className={`nav-item ${activeSection === link.id ? "active" : ""}`}
                 onClick={() => setMenuOpen(false)}
               >
                 {link.label}
@@ -63,97 +65,119 @@ function Navbar({ onToggleGravity }) {
           ))}
         </ul>
 
-        {/* Action Controls */}
-        <div className="nav-actions">
-          {/* Gravity Mode Trigger */}
-          <button
-            className="gravity-toggle-btn"
-            onClick={onToggleGravity}
-            title="Launch Interactive Zero-G Physics Sandbox"
-            aria-label="Toggle Gravity Mode"
+        {/* Action / Social Controls */}
+        <div className="navbar-actions">
+          <a
+            href="https://github.com/Aathi786"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="nav-icon-link"
+            title="GitHub Profile"
+            aria-label="GitHub Profile"
           >
-            <FaAtom className="spin-icon" />
-            <span>GRAVITY</span>
-          </button>
+            <FaGithub />
+          </a>
 
-          {/* Resume View & Download */}
-          <div className="resume-group">
-            <a
-              href="/Aathithya.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-resume-view"
-              title="View Resume in browser"
-            >
-              <FaFilePdf /> Resume
-            </a>
-            <a
-              href="/Aathithya.pdf"
-              download="Aathithya_FullStack_Resume.pdf"
-              className="btn-resume-download"
-              title="Download Resume PDF"
-              aria-label="Download Resume PDF"
-            >
-              <FaDownload />
-            </a>
-          </div>
+          <a
+            href="https://www.linkedin.com/in/aathi77"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="nav-icon-link"
+            title="LinkedIn Profile"
+            aria-label="LinkedIn Profile"
+          >
+            <FaLinkedin />
+          </a>
+
+          <div className="nav-divider" />
+
+          {/* Resume Quick Access */}
+          <a
+            href="/Aathithya.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="nav-resume-btn"
+            title="View Resume PDF"
+          >
+            <FaFileAlt className="btn-icon" />
+            <span>RESUME</span>
+          </a>
         </div>
 
-        {/* Mobile Hamburger Toggle */}
+        {/* Mobile Menu Hamburger */}
         <button
-          className="mobile-toggle"
+          className="navbar-mobile-toggle"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label={menuOpen ? "Close Menu" : "Open Menu"}
+          aria-expanded={menuOpen}
         >
           {menuOpen ? <FaTimes /> : <FaBars />}
         </button>
       </nav>
 
-      {/* Mobile Drawer Menu */}
-      <div className={`mobile-menu-drawer ${menuOpen ? "open" : ""}`}>
-        <ul className="mobile-nav-list">
-          {navLinks.map((link) => (
-            <li key={link.id}>
+      {/* Mobile Drawer */}
+      <div className={`mobile-nav-overlay ${menuOpen ? "open" : ""}`} onClick={() => setMenuOpen(false)}>
+        <div className="mobile-nav-panel" onClick={(e) => e.stopPropagation()}>
+          <div className="mobile-panel-header">
+            <div className="brand-name">
+              AATHITHYA <span className="brand-gold">R</span>
+            </div>
+            <button
+              className="mobile-close-btn"
+              onClick={() => setMenuOpen(false)}
+              aria-label="Close navigation"
+            >
+              <FaTimes />
+            </button>
+          </div>
+
+          <ul className="mobile-nav-list">
+            {navLinks.map((link) => (
+              <li key={link.id}>
+                <a
+                  href={`#${link.id}`}
+                  className={`mobile-nav-item ${activeSection === link.id ? "active" : ""}`}
+                  onClick={() => setMenuOpen(false)}
+                >
+                  <span>{link.label}</span>
+                  <FaArrowRight className="mobile-item-arrow" />
+                </a>
+              </li>
+            ))}
+          </ul>
+
+          <div className="mobile-panel-footer">
+            <div className="mobile-socials">
               <a
-                href={`#${link.id}`}
-                className={activeSection === link.id ? "active" : ""}
-                onClick={() => setMenuOpen(false)}
+                href="https://github.com/Aathi786"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mobile-social-link"
+                aria-label="GitHub"
               >
-                {link.label}
+                <FaGithub /> GitHub
               </a>
-            </li>
-          ))}
-        </ul>
+              <a
+                href="https://www.linkedin.com/in/aathi77"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mobile-social-link"
+                aria-label="LinkedIn"
+              >
+                <FaLinkedin /> LinkedIn
+              </a>
+            </div>
 
-        <div className="mobile-actions">
-          <button
-            className="gravity-toggle-btn full-w"
-            onClick={() => {
-              setMenuOpen(false);
-              onToggleGravity();
-            }}
-          >
-            <FaAtom /> GRAVITY MODE
-          </button>
-
-          <a
-            href="/Aathithya.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-resume-view full-w"
-            onClick={() => setMenuOpen(false)}
-          >
-            <FaFilePdf /> View Resume
-          </a>
-
-          <a
-            href="/Aathithya.pdf"
-            download="Aathithya_FullStack_Resume.pdf"
-            className="btn-resume-download-mobile"
-            onClick={() => setMenuOpen(false)}
-          >
-            <FaDownload /> Download Resume PDF
-          </a>
+            <a
+              href="/Aathithya.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-gold-primary mobile-resume-cta"
+              onClick={() => setMenuOpen(false)}
+            >
+              <FaFileAlt /> VIEW RESUME PDF
+            </a>
+          </div>
         </div>
       </div>
     </header>

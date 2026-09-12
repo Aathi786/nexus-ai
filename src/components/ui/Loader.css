@@ -1,12 +1,12 @@
 .loader-screen {
   position: fixed;
   inset: 0;
-  background: #050816;
+  background: #050608;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 999999;
-  padding: 20px;
+  padding: 24px;
 }
 
 .loader-box {
@@ -20,54 +20,59 @@
 }
 
 .loader-logo-wrap {
-  position: relative;
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 12px;
   margin-bottom: 8px;
 }
 
-.loader-logo {
-  font-family: 'Outfit', sans-serif;
-  font-size: clamp(38px, 8vw, 56px);
-  font-weight: 800;
-  letter-spacing: 4px;
-  color: #ffffff;
+.loader-symbol {
+  color: var(--gold-primary);
+  font-size: 20px;
+  text-shadow: 0 0 15px var(--gold-primary);
 }
 
-.cyan-text {
-  color: #00E5FF;
-  text-shadow: 0 0 20px rgba(0, 229, 255, 0.6);
+.loader-logo {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(32px, 6vw, 44px);
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #FFFFFF;
+}
+
+.gold-text {
+  color: var(--gold-primary);
+  text-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
 }
 
 .loader-status-line {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   font-family: 'JetBrains Mono', monospace;
   font-size: 11px;
   font-weight: 600;
-  color: #94A3B8;
-  letter-spacing: 1px;
+  color: var(--text-secondary);
+  letter-spacing: 1.2px;
 }
 
 .loader-live-dot {
-  width: 6px;
-  height: 6px;
-  background: #00E5FF;
+  width: 7px;
+  height: 7px;
+  background: var(--gold-primary);
   border-radius: 50%;
-  box-shadow: 0 0 8px #00E5FF;
-  animation: pulseDot 1s infinite alternate;
+  box-shadow: 0 0 10px var(--gold-primary);
+  animation: pulseDot 0.8s infinite alternate;
 }
 
 @keyframes pulseDot {
-  from { opacity: 0.3; transform: scale(0.8); }
+  from { opacity: 0.4; transform: scale(0.8); }
   to { opacity: 1; transform: scale(1.2); }
 }
 
 .loader-progress-track {
   width: 100%;
-  height: 6px;
+  height: 4px;
   background: rgba(255, 255, 255, 0.08);
   border-radius: 9999px;
   overflow: hidden;
@@ -75,14 +80,14 @@
 
 .loader-progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, #00E5FF, #7C3AED);
-  box-shadow: 0 0 15px rgba(0, 229, 255, 0.5);
-  animation: loadFill 1s ease-in-out forwards;
+  background: var(--gradient-gold);
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.6);
+  animation: loadFill 0.7s ease-in-out forwards;
 }
 
 @keyframes loadFill {
   0% { width: 0%; }
-  60% { width: 75%; }
+  50% { width: 70%; }
   100% { width: 100%; }
 }
 
@@ -92,6 +97,6 @@
   width: 100%;
   font-family: 'JetBrains Mono', monospace;
   font-size: 11px;
-  color: #64748B;
+  color: var(--text-muted);
   margin-top: 4px;
 }
