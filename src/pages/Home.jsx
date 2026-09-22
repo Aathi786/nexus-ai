@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import Lenis from "lenis";
-import CinematicBackground from "../components/background/CinematicBackground";
+import FlythroughCanvas from "../components/flythrough/FlythroughCanvas";
 import CustomCursor from "../components/ui/CustomCursor";
 import Navbar from "../components/layout/Navbar";
 import Hero from "../components/hero/Hero";
@@ -87,8 +87,8 @@ function Home() {
       {/* 1. Custom Interactive Luxury Cursor (Desktop) */}
       <CustomCursor />
 
-      {/* 2. Ambient Obsidian & Gold Dust Background */}
-      <CinematicBackground />
+      {/* 2. 3D Camera Flythrough Background (replaces flat 2D canvas) */}
+      <FlythroughCanvas />
 
       {/* 3. Luxury Floating Navbar */}
       <Navbar />

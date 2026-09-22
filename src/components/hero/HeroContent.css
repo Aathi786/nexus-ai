@@ -44,14 +44,25 @@
 }
 
 .hero-name {
-  font-size: clamp(42px, 7vw, 76px);
-  font-weight: 900;
-  line-height: 1.05;
-  letter-spacing: 2px;
-  background: linear-gradient(135deg, #FFFFFF 0%, #00E5FF 55%, #7C3AED 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 16px;
+    font-size: clamp(42px, 7vw, 76px);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: 2px;
+
+    background: linear-gradient(
+        135deg,
+        #FFFFFF 0%,
+        #00E5FF 55%,
+        #7C3AED 100%
+    );
+
+    background-clip: text;
+    -webkit-background-clip: text;
+
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+
+    margin-bottom: 16px;
 }
 
 .hero-roles {
